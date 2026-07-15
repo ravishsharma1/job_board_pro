@@ -1,0 +1,33 @@
+<h1><%= @applicant.name %></h1>
+
+<p>Email: <%= @applicant.email %></p>
+
+<p>Phone: <%= @applicant.phone %></p>
+
+<p>Cover Letter:</p>
+
+<p><%= @applicant.cover_letter %></p>
+
+<hr>
+
+<%= link_to "Edit",
+    edit_company_job_applicant_path(@company, @job, @applicant) %>
+
+<% if @applicant.resume.attached? %>
+  <p>
+    <strong>Resume:</strong>
+    <%= link_to "Download Resume", rails_blob_path(@applicant.resume, disposition: "attachment") %>
+  </p>
+<% end %>
+
+|
+
+<%= link_to "Delete",
+    company_job_applicant_path(@company, @job, @applicant),
+    data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    } %>
+
+<%= link_to "Back",
+    company_job_applicants_path(@company, @job) %>

@@ -1,0 +1,44 @@
+<%= form_with model: [@company, @job, @applicant] do |form| %>
+
+    <% if @applicant.errors.any? %>
+      <div>
+        <h3><%= pluralize(@applicant.errors.count, "error") %> prevented this applicant from being saved:</h3>
+  
+        <ul>
+          <% @applicant.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+  
+    <p>
+      <%= form.label :email %><br>
+      <%= form.email_field :email %>
+    </p>
+  
+    <p>
+      <%= form.label :phone %><br>
+      <%= form.telephone_field :phone %>
+    </p>
+  
+    <p>
+      <%= form.label :cover_letter %><br>
+      <%= form.text_area :cover_letter %>
+    </p>
+
+    <p>
+      <%= form.label :resume %><br>
+      <%= form.file_field :resume %>
+    </p>
+  
+    <p>
+      <%= form.submit %>
+    </p>
+  
+  <% end %>

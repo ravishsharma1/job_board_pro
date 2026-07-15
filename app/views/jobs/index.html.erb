@@ -1,0 +1,33 @@
+<h1><%= @company.name %> Jobs</h1>
+
+<%= link_to "Post New Job", new_company_job_path(@company) %>
+
+<hr>
+
+<% @jobs.each do |job| %>
+
+  <h3><%= job.title %></h3>
+
+  <p><%= job.location %></p>
+
+  <p>Salary: <%= job.salary %></p>
+
+  <%= link_to "View", company_job_path(@company, job) %>
+
+  <%= link_to "Edit", edit_company_job_path(@company, job) %>
+
+
+  <%= link_to "Delete",
+            company_job_path(@company, job),
+            data: {
+              turbo_method: :delete,
+              turbo_confirm: "Are you sure?"
+            } %>
+
+  <%= button_to "Delete",
+        company_job_path(@company, job),
+        method: :delete %>
+
+  <hr>
+
+<% end %>
